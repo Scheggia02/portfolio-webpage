@@ -1,6 +1,7 @@
 export const projects = {
   dreamcatcher: {
     title: "Dreamcatcher",
+    icon: "building",
     type: "Large-scale Unreal Engine platform",
     role: "Unreal Engine Engineer (Junior to Mid)",
     overview:
@@ -49,6 +50,7 @@ export const projects = {
   },
   aken: {
     title: "AKEN",
+    icon: "swords",
     type: "Open-world action RPG",
     role: "Solo Developer / Systems Engineer",
     overview:
@@ -81,13 +83,94 @@ export const projects = {
   },
 };
 
-export const experiments = [
-  {
+export const caseStudies = {
+  aiBehaviorPrototype: {
     title: "AI Behavior Prototype",
-    desc: "Explored modular AI decision systems and behavior trees",
+    icon: "brain",
+    type: "Gameplay AI systems",
+    summary: "Explored modular decision-making, behavior tree composition, and scalable AI state flow.",
+    goal:
+      "Design a flexible enemy AI foundation that can support different archetypes without duplicating behavior logic across characters.",
+    media: {
+      label: "Behavior tree capture / debug video placeholder",
+      notes:
+        "Add a short clip showing perception changes, state transitions, and debug overlays during combat or patrol scenarios.",
+    },
+    architecture: [
+      "Separated sensing, decision selection, and action execution into focused components",
+      "Used behavior tree tasks for high-level flow while keeping reusable gameplay logic in C++ services",
+      "Designed state transitions around explicit intent so designers can tune behavior without editing core code",
+    ],
+    codeTitle: "Reusable AI Intent Selection",
+    code: `UCombatIntent UEnemyDecisionComponent::SelectIntent(const FAIContext& Context) const
+{
+    if (Context.ThreatLevel > HighThreatThreshold && Context.HealthPercent < RetreatHealthPercent)
+    {
+        return UCombatIntent::Retreat;
+    }
+
+    if (Context.HasLineOfSight && Context.DistanceToTarget < AttackRange)
+    {
+        return UCombatIntent::Attack;
+    }
+
+    return Context.LastKnownTargetLocation.IsSet()
+        ? UCombatIntent::Investigate
+        : UCombatIntent::Patrol;
+}`,
+    tradeoffs: [
+      "Kept decision rules readable instead of over-generalizing into a black-box scoring system too early",
+      "Favored composable components so new enemy types can override only the pieces they need",
+      "Prioritized debug visibility because AI iteration speed depends on understanding why an agent made a choice",
+    ],
+    outcome: [
+      "Established a clean prototype shape for multiple enemy archetypes",
+      "Improved debuggability of AI decisions and behavior transitions",
+      "Created a foundation suitable for expanding into perception, combat roles, and group behavior",
+    ],
+    tech: ["Unreal Engine", "C++", "Behavior Trees", "Gameplay AI"],
   },
-  {
+  abilitySystemTestbed: {
     title: "Ability System Testbed",
-    desc: "Designed flexible ability execution framework",
+    icon: "bolt",
+    type: "Gameplay ability architecture",
+    summary: "Designed a flexible ability execution framework for cooldowns, costs, targeting, and effects.",
+    goal:
+      "Prototype an ability pipeline that keeps gameplay rules modular while supporting fast iteration on combat design.",
+    media: {
+      label: "Ability montage / targeting debug placeholder",
+      notes:
+        "Add a clip showing activation, targeting validation, resource cost, cooldown feedback, and effect application.",
+    },
+    architecture: [
+      "Modeled ability activation as a small pipeline: validate, commit cost, execute, apply effects, start cooldown",
+      "Kept cost and cooldown logic separate from ability effects so designers can combine them freely",
+      "Used data-driven definitions to reduce hard-coded gameplay behavior across individual abilities",
+    ],
+    codeTitle: "Ability Activation Pipeline",
+    code: `bool UAbilityRunner::TryActivateAbility(const FAbilitySpec& Ability, AActor* Target)
+{
+    if (!Ability.Cost->CanPay(Owner) || !Ability.Targeting->IsValidTarget(Owner, Target))
+    {
+        return false;
+    }
+
+    Ability.Cost->Commit(Owner);
+    Ability.Effect->Apply(Owner, Target);
+    Cooldowns.Start(Ability.Id, Ability.CooldownSeconds);
+
+    return true;
+}`,
+    tradeoffs: [
+      "Used a lightweight custom prototype rather than full production complexity for faster experimentation",
+      "Kept systems data-driven while preserving C++ ownership for performance-critical gameplay rules",
+      "Designed the pipeline so networking, prediction, and animation hooks can be added later without rewriting activation flow",
+    ],
+    outcome: [
+      "Created a reusable ability flow for combat experiments",
+      "Made resource costs, cooldowns, and target checks easier to test independently",
+      "Defined an architecture that can evolve toward a larger RPG or MMO combat framework",
+    ],
+    tech: ["Unreal Engine", "C++", "Gameplay Systems", "Combat"],
   },
-];
+};
