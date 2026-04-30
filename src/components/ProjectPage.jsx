@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import { MediaGallery } from "./MediaGallery.jsx";
 import { SectionTitle } from "./SectionTitle.jsx";
 
 const fadeUp = {
@@ -12,6 +14,17 @@ export function ProjectPage({ project }) {
       <div>
         <h1 className="text-3xl font-bold">{project.title}</h1>
         <p className="mt-1 text-zinc-400">{project.role}</p>
+        {project.website ? (
+          <a
+            href={project.website.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-md border border-white/10 px-3 py-2 text-sm text-zinc-200 transition hover:border-cyan-200/40 hover:bg-cyan-200/10 hover:text-white"
+          >
+            {project.website.label}
+            <ExternalLink size={15} strokeWidth={1.8} aria-hidden="true" />
+          </a>
+        ) : null}
       </div>
 
       <section>
@@ -21,9 +34,7 @@ export function ProjectPage({ project }) {
 
       <section>
         <SectionTitle title="Media" />
-        <div className="mt-4 flex h-48 items-center justify-center rounded-lg border border-white/10 text-zinc-500">
-          Add video / images here
-        </div>
+        <MediaGallery items={project.media} />
       </section>
 
       <section>

@@ -26,9 +26,7 @@ export function Home({ onOpen }) {
       <section>
         <SectionTitle title="About" subtitle="C++ / Unreal Engine Systems Engineer" />
         <p className="mt-4 text-sm leading-6 text-zinc-300">
-          I design and build scalable gameplay and real-time systems in Unreal Engine using C++.
-          My work focuses on system architecture, performance, and maintainability across complex
-          environments.
+          I build modular Unreal Engine gameplay and real-time systems with a focus on C++, scalable architecture, debugging workflows, and performance-conscious implementation.
         </p>
       </section>
 

@@ -4,8 +4,35 @@ export const projects = {
     icon: "building",
     type: "Large-scale Unreal Engine platform",
     role: "Unreal Engine Engineer (Junior to Mid)",
+    website: {
+      label: "Visit ZURU Tech",
+      url: "https://www.zuru.tech/",
+    },
     overview:
       "A real-time architectural and MEP visualization platform focused on high-fidelity rendering, simulation systems, and large-scale scene management.",
+    media: [
+      {
+        type: "video",
+        title: "Large Scene Walkthrough",
+        caption:
+          "Short capture slot for a high-fidelity architectural scene, camera movement, and real-time rendering quality.",
+        note: "Use this for a sanitized demo clip or rebuilt sample if production footage is restricted.",
+      },
+      {
+        type: "image",
+        title: "Runtime Entity Debug View",
+        caption:
+          "Screenshot slot for entity lifetime, spawning, or inspection overlays in a dense environment.",
+        note: "Best for showing the engineering problem visually before explaining the lifecycle system.",
+      },
+      {
+        type: "image",
+        title: "Mesh Builder Output",
+        caption:
+          "Before/after or generated-geometry capture showing custom mesh generation for architectural workflows.",
+        note: "Pair this with implementation notes around data flow, mesh sections, and integration constraints.",
+      },
+    ],
     systems: [
       {
         title: "Entity Lifecycle System (FMS)",
@@ -53,8 +80,35 @@ export const projects = {
     icon: "swords",
     type: "Open-world action RPG",
     role: "Solo Developer / Systems Engineer",
+    website: {
+      label: "Visit AKEN Website",
+      url: "https://project-aken.crd.co/",
+    },
     overview:
       "A third-person fantasy MMO focused on scalable gameplay systems and modular architecture.",
+    media: [
+      {
+        type: "video",
+        title: "Combat Loop Capture",
+        caption:
+          "Gameplay clip slot for movement, targeting, ability activation, and moment-to-moment combat readability.",
+        note: "A 20-40 second clip with debug UI briefly enabled would give strong AAA-facing signal.",
+      },
+      {
+        type: "image",
+        title: "Ability System Debug HUD",
+        caption:
+          "Screenshot slot for resources, cooldowns, ability state, and gameplay feedback during a combat scenario.",
+        note: "Use this to connect design goals with concrete runtime state and systems ownership.",
+      },
+      {
+        type: "image",
+        title: "World Systems Prototype",
+        caption:
+          "Capture slot for NPCs, quests, encounters, or scalable world-system prototypes.",
+        note: "This can become a small gallery item for showing broader MMO architecture work.",
+      },
+    ],
     systems: [
       {
         title: "Dual Resource System",
@@ -91,11 +145,29 @@ export const caseStudies = {
     summary: "Explored modular decision-making, behavior tree composition, and scalable AI state flow.",
     goal:
       "Design a flexible enemy AI foundation that can support different archetypes without duplicating behavior logic across characters.",
-    media: {
-      label: "Behavior tree capture / debug video placeholder",
-      notes:
-        "Add a short clip showing perception changes, state transitions, and debug overlays during combat or patrol scenarios.",
-    },
+    media: [
+      {
+        type: "video",
+        title: "Behavior Tree Debug Capture",
+        caption:
+          "Clip slot for patrol, perception changes, investigation, and combat state transitions with debug overlays.",
+        note: "Keep the clip short and let the overlay prove why the agent changes intent.",
+      },
+      {
+        type: "image",
+        title: "Decision Flow Diagram",
+        caption:
+          "Diagram slot for sensing, intent selection, behavior tree tasks, and action execution boundaries.",
+        note: "A simple recreated diagram is useful when real project screenshots are unavailable.",
+      },
+      {
+        type: "image",
+        title: "Perception Tuning View",
+        caption:
+          "Screenshot slot for AI perception ranges, target scoring, or designer-facing tuning values.",
+        note: "This helps reviewers see iteration tooling, not only runtime behavior.",
+      },
+    ],
     architecture: [
       "Separated sensing, decision selection, and action execution into focused components",
       "Used behavior tree tasks for high-level flow while keeping reusable gameplay logic in C++ services",
@@ -137,11 +209,29 @@ export const caseStudies = {
     summary: "Designed a flexible ability execution framework for cooldowns, costs, targeting, and effects.",
     goal:
       "Prototype an ability pipeline that keeps gameplay rules modular while supporting fast iteration on combat design.",
-    media: {
-      label: "Ability montage / targeting debug placeholder",
-      notes:
-        "Add a clip showing activation, targeting validation, resource cost, cooldown feedback, and effect application.",
-    },
+    media: [
+      {
+        type: "video",
+        title: "Ability Activation Clip",
+        caption:
+          "Clip slot for activation, targeting validation, resource cost, cooldown feedback, and effect application.",
+        note: "Show one complete ability pass from input to outcome, ideally with a compact debug overlay.",
+      },
+      {
+        type: "image",
+        title: "Activation Pipeline Diagram",
+        caption:
+          "Diagram slot for validation, cost commit, execution, effect application, and cooldown ownership.",
+        note: "This is the best place to show that the system is modular rather than a one-off ability script.",
+      },
+      {
+        type: "image",
+        title: "Data-Driven Ability Definition",
+        caption:
+          "Screenshot slot for ability data, tuning values, target rules, or designer-facing configuration.",
+        note: "Use this to show how engineers and designers would safely iterate on combat behavior.",
+      },
+    ],
     architecture: [
       "Modeled ability activation as a small pipeline: validate, commit cost, execute, apply effects, start cooldown",
       "Kept cost and cooldown logic separate from ability effects so designers can combine them freely",

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { MediaGallery } from "./MediaGallery.jsx";
 import { SectionTitle } from "./SectionTitle.jsx";
 
 const fadeUp = {
@@ -22,10 +23,7 @@ export function CaseStudyPage({ caseStudy }) {
 
       <section>
         <SectionTitle title="Media" />
-        <div className="mt-4 flex h-52 items-center justify-center rounded-lg border border-dashed border-white/15 bg-zinc-950/70 p-5 text-center text-sm text-zinc-500">
-          {caseStudy.media.label}
-        </div>
-        <p className="mt-3 text-sm leading-6 text-zinc-400">{caseStudy.media.notes}</p>
+        <MediaGallery items={caseStudy.media} />
       </section>
 
       <section>
@@ -41,7 +39,9 @@ export function CaseStudyPage({ caseStudy }) {
 
       <section>
         <SectionTitle title="Code Snippet" subtitle={caseStudy.codeTitle} />
-        <pre className="mt-4 overflow-auto rounded-lg border border-white/10 bg-black p-4 text-xs leading-5 text-zinc-300"><code>{caseStudy.code}</code></pre>
+        <pre className="mt-4 overflow-auto rounded-lg border border-white/10 bg-black p-4 text-xs leading-5 text-zinc-300">
+          <code>{caseStudy.code}</code>
+        </pre>
       </section>
 
       <section>
